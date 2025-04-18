@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection Suite | PE2 Research Topic</title>
+    <!-- <link rel="stylesheet" href="/static/micro.css"> -->
+    <script src="/static/tailwind.es"></script>
+    <style>
+        body{
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+        }
+
+        .align_footer_text{
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
+        }
+        footer{margin-top:auto;}
+    </style>
+</head>
+<body class="bg-gray-900">
+    <header class="text-gray-400 bg-gray-900 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+            <span class="ml-3 text-xl">DeepFake Detection Suite</span>
+          </a>
+          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a class="mr-5 hover:text-white" href="/">Home</a>
+          </nav>
+        </div>
+    </header>
+    {% if get_flashed_messages() %}
+          <div class="container mx-auto">
+              <div class="flex flex-col text-center w-full">
+                  <p class="mx-auto leading-relaxed text-base text-white">{{ get_flashed_messages() | join(" ") }}</p>
+              </div>
+          </div>
+    {% endif %}
+    {% if error %}
+    <section class="text-gray-400 bg-gray-900 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-12">
+          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">{{ code }}</h1>
+        </div>
+      </div>
+    </section>
+    {% else %}
+    <section class="text-gray-400 bg-gray-900 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-12">
+          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">DeepFake Detection Suite</h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Upload a Video/Audio/Image to Get Started.</p>
+        </div>
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:px-0 items-end sm:space-x-4sm:space-y-0 space-y-4">
+          <div class="relative sm:mb-0 flex-grow w-full">
+            <label for="video" class="leading-7 text-sm text-gray-400">Video/Audio/Image File
+            <form action="/" method="post" enctype="multipart/form-data">
+                <div class="text-white bg-gray-800 bg-opacity-40 border-0">
+                  <input type="file" name="file" id="file" class="flex text-white py-2 px-2 focus:outline-none hover:bg-gray-800 hover:bg-opacity-80 rounded" accept=".mp4, .jpg, .jpeg, .png, .wav" required></label>
+                </div>
+              </div>
+              <button class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 roundedtext-lg" type="submit">Check</button>
+          </form>
+        </div>
+        {% if status %}
+        <div class="flex flex-col text-center w-full">
+          <h1 class="text-xl font-medium title-font mb-4 text-white mt-5">Detection Status</h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">The File is: <b class="text-white">{{ status }}</b></p>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+    {% endif %}
+    <footer class="text-gray-400 bg-gray-900 body-font">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+            <span class="ml-3 text-xl">DeepFake Detection Suite</span>
+          </a>
+          <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2025 Aanis Ali Shah, Bandhan Majumder
+            <!-- <a href="https://alight659.github.io" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@alight659</a> -->
+          </p>
+          <p class="text-gray-500 align_footer_text">
+            These Models were found to be 89.35% Accurate while being Tested.
+          </p>
+          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <a class="text-gray-400" href="https://github.com/alight659/deepfake-detector" target="_blank">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M12 .5C5.37.5 0 5.78 0 12.292c0 5.211 3.438 9.63 8.205 11.188.6.111.82-.254.82-.567 0-.28-.01-1.022-.015-2.005-3.338.711-4.042-1.582-4.042-1.582-.546-1.361-1.335-1.725-1.335-1.725-1.087-.731.084-.716.084-.716 1.205.082 1.838 1.215 1.838 1.215 1.07 1.803 2.809 1.282 3.495.981.108-.763.417-1.282.76-1.577-2.665-.295-5.466-1.309-5.466-5.827 0-1.287.465-2.339 1.235-3.164-.135-.298-.54-1.497.105-3.121 0 0 1.005-.316 3.3 1.209.96-.262 1.98-.392 3-.398 1.02.006 2.04.136 3 .398 2.28-1.525 3.285-1.209 3.285-1.209.645 1.624.24 2.823.12 3.121.765.825 1.23 1.877 1.23 3.164 0 4.53-2.805 5.527-5.475 5.817.42.354.81 1.077.81 2.182 0 1.578-.015 2.846-.015 3.229 0 .309.21.678.825.56C20.565 21.917 24 17.495 24 12.292 24 5.78 18.627.5 12 .5z"></path>
+                  </svg>
+            </a>
+          </span>
+        </div>
+    </footer>
+</body>
+</html>
